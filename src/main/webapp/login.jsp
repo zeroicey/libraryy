@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gradient-to-r from-blue-900 via-red-900 to-yellow-600 min-h-screen relative">
 <!-- 浮动返回主页按钮 -->
-<a href="index.jsp" class="absolute top-8 left-8 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg flex items-center gap-2">
+<a href="index.html" class="absolute top-8 left-8 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg flex items-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 111.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
     </svg>
