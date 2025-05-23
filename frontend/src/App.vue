@@ -1,11 +1,7 @@
 <template>
-  <h1>Hello App!</h1>
-  <p>
-    <strong>Current route path:</strong> {{ $route.fullPath }}
-  </p>
-  <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/about">Go to About</RouterLink>
+  <nav v-if="$route.path !== '/login' && $route.path !== '/register' && $route.path !== '/'">
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
   </nav>
   <main>
     <RouterView />
