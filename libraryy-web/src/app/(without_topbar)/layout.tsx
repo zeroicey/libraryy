@@ -3,9 +3,5 @@ export default function WithoutTopbarLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex w-screen h-screen justify-center items-center">
-      {children}
-    </div>
-  );
+  return <div className="w-screen h-screen">{children}</div>;
 }
