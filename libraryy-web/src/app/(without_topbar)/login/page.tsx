@@ -180,7 +180,7 @@ export default function LoginPage() {
         {/* 底部信息 */}
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-500">
-            © 2024 悦读图书馆. 让阅读成为一种享受
+            © 2025 悦读图书馆. 让阅读成为一种享受
           </p>
         </div>
       </div>
