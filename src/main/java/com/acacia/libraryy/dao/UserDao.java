@@ -11,22 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    DBUtil dbUtil = new DBUtil("jdbc:mysql://localhost:3306/libraryy", "root", "kxboons");
+    DBUtil dbUtil = new DBUtil("jdbc:mysql://localhost:3306/libraryy", "root", "123456");
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
     private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
     private static final String SELECT_USER_BY_USERNAME = "SELECT * FROM users WHERE username = ?";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
-    private static final String SELECT_USER_BY_NAME = "SELECT * FROM users WHERE name = ?";
+    private static final String SELECT_USER_BY_NAME = "SELECT * FROM users WHERE username = ?";
     private static final String INSERT_USER = "INSERT INTO users(username, password, email) VALUES(?,?,?)";
     private static final String DELETE_USER = "DELETE FROM users WHERE email = ?";
 
-    public boolean insertUser(User user) {
+    public boolean insertUser(String username, String password, String email) {
         try {
             Connection conn = dbUtil.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(INSERT_USER);
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, email);
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -43,10 +43,11 @@ public class UserDao {
             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_USERS);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                Integer id = rs.getInt("id");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
-                users.add(new User(username, password, email));
+                users.add(new User(id, username, password, email));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -60,15 +61,21 @@ public class UserDao {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_USER_BY_ID);
             preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String email = rs.getString("email");
-                user = new User(username, password, email);
-            }
+            user = getUser(user, preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+    private User getUser(User user, PreparedStatement preparedStatement) throws SQLException {
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            user = new User(id, username, password, email);
         }
         return user;
     }
@@ -81,9 +88,10 @@ public class UserDao {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                Integer id = rs.getInt("id");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
-                user = new User(username, password, email);
+                user = new User(id, username, password, email);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -99,9 +107,10 @@ public class UserDao {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                Integer id = rs.getInt("id");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                user = new User(username, password, email);
+                user = new User(id, username, password, email);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -115,19 +124,13 @@ public class UserDao {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_USER_BY_NAME);
             preparedStatement.setString(1, name);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String email = rs.getString("email");
-                user = new User(username, password, email);
-            }
+            user = getUser(user, preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return user;
     }
-    
+
     public boolean deleteUserById(int id) {
         try {
             Connection conn = dbUtil.getConnection();

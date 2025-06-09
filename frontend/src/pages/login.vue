@@ -1,11 +1,45 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useUserStore } from '../store/user'
+const userStore = useUserStore()
 
-const nameOrEmail = ref('')
+const name = ref('')
 const password = ref('')
+const isLogging = ref(false)
 
 const handleSubmit = () => {
-    console.log(nameOrEmail.value, password.value)
+    isLogging.value = true
+
+    fetch("http://localhost:8080/api/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: name.value,
+            password: password.value
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                const user = data.data.user
+                userStore.setToken(data.data.token)
+                console.log(data.data.username)
+                userStore.setUser(user.id, user.username, user.email)
+                console.log(userStore.getToken)
+                alert('登录成功！')
+            } else {
+                alert('登录失败，请检查用户名和密码')
+            }
+        })
+        .catch(error => {
+            console.error('登录失败:', error)
+            alert('登录失败，请稍后重试')
+        })
+        .finally(() => {
+            isLogging.value = false
+        })
 }
 </script>
 
@@ -36,7 +70,7 @@ const handleSubmit = () => {
             <!-- Login Form -->
             <form @submit.prevent="handleSubmit" class="flex flex-col gap-6">
                 <div>
-                    <label class="block mb-2 text-gray-700 font-semibold" for="nameOrEmail">用户名或邮箱</label>
+                    <label class="block mb-2 text-gray-700 font-semibold" for="name">用户名</label>
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-400">
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -44,8 +78,7 @@ const handleSubmit = () => {
                                     d="M16 12a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm2 6a6 6 0 1 0-12 0h12z" />
                             </svg>
                         </span>
-                        <input id="nameOrEmail" v-model="nameOrEmail" type="text" required placeholder="请输入用户名或邮箱"
-                            minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="不少于8位，包含数字、小写字母、大写字母"
+                        <input id="name" v-model="name" type="text" required placeholder="请输入用户名或邮箱" minlength="8"
                             class="pl-10 pr-4 py-3 w-full rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition bg-gray-50 outline-none text-gray-700 placeholder-gray-400 shadow-sm" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1 pl-1">
@@ -69,9 +102,13 @@ const handleSubmit = () => {
                         不少于8位，包含数字、小写字母、大写字母
                     </p>
                 </div>
-                <button
-                    class="w-full py-3 mt-2 text-lg font-bold rounded-xl bg-indigo-500 text-white shadow-md hover:bg-indigo-600 transition active:scale-95">
-                    登录
+                <button :disabled="isLogging" :class="[
+                    'w-full py-3 mt-2 text-lg font-bold rounded-xl text-white shadow-md transition active:scale-95',
+                    isLogging
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-indigo-500 hover:bg-indigo-600'
+                ]">
+                    {{ isLogging ? '登录中...' : '登录' }}
                 </button>
             </form>
             <!-- Register Link -->

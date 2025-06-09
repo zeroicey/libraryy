@@ -2,41 +2,52 @@ package com.acacia.libraryy.routes;
 
 import com.acacia.libraryy.dao.UserDao;
 import com.acacia.libraryy.model.User;
-import com.acacia.libraryy.utils.ResponseUtil;
+import com.acacia.libraryy.utils.Responder;
 import com.alibaba.fastjson2.JSON;
 
-import jakarta.servlet.ServletException;
+import com.alibaba.fastjson2.JSONObject;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-@WebServlet("/registerServlet")
+@WebServlet("/api/register")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
+        StringBuilder jsonBuilder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+        }
+        String jsonString = jsonBuilder.toString();
+        JSONObject jsonObject = JSON.parseObject(jsonString);
 
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        // 提取 JSON 中的数据
+        String username = jsonObject.getString("username");
+        String email = jsonObject.getString("email");
+        String password = jsonObject.getString("password");
+
+        System.out.println(username);
+        System.out.println(email);
+        System.out.println(password);
 
         if (username != null && password != null && email != null) {
-            User user = new User(username, password, email);
             UserDao userDao = new UserDao();
-            boolean ret = userDao.insertUser(user);
-
+            boolean ret = userDao.insertUser(username, password, email);
             if (ret) {
-                out.print(JSON.toJSONString(ResponseUtil.generateResponse(true, "注册成功! 赶紧去登录吧~")));
+                Responder.success("Register Successfully").build(response);
             } else {
-                out.print(JSON.toJSONString(ResponseUtil.generateResponse(false, "字段填写有误!")));
+                Responder.fail("User has been registered").build(response);
             }
         } else {
-            out.print(JSON.toJSONString(ResponseUtil.generateResponse(false, "请填写完整信息！")));
+            Responder.fail("Invalid request body").build(response);
         }
     }
 }

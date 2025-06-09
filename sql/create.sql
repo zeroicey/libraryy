@@ -20,11 +20,19 @@ create table if not exists `books` (
        `title` varchar(100) not null,
        `author` varchar(255) not null,
        `tag` varchar(100) not null,
+       `status` enum('available', 'borrowed') default 'available',
+       `description` text not null,
+       `cover_image` varchar(255),
+       `isbn` varchar(20) not null, -- International Standard Book Number
+       `publication_year` int not null,
+       `publisher` varchar(100) not null,
+       `sum_number` int not null,
+       `rest_number` int not null,
        `created_at` datetime default current_timestamp,
        `updated_at` datetime default current_timestamp on update current_timestamp,
 
        primary key (`id`),
-       unique key `username_unique` (`title`)
+       unique key `title_unique` (`title`)
 ) engine=InnoDB default charset=utf8mb4 collate=utf8mb4_unicode_ci;
 
 

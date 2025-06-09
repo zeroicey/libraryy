@@ -5,14 +5,41 @@ const username = ref('')
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const isRegistering = ref(false)
 
 const handleRegister = () => {
     if (password.value !== confirmPassword.value) {
         alert('两次输入的密码不一致！')
         return
     }
+    
+    isRegistering.value = true
+    
     // 注册逻辑
     console.log(username.value, email.value, password.value)
+    fetch("http://localhost:8080/api/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username.value,
+            email: email.value,
+            password: password.value
+        })
+    }).then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                alert('注册成功！')
+            }
+        })
+        .catch(error => {
+            console.error('注册失败:', error)
+            alert('注册失败，请稍后重试')
+        })
+        .finally(() => {
+            isRegistering.value = false
+        })
 }
 </script>
 
@@ -68,8 +95,14 @@ const handleRegister = () => {
                         class="pl-4 pr-4 py-3 w-full rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 transition bg-gray-50 outline-none text-gray-700 placeholder-gray-400 shadow-sm" />
                 </div>
                 <button
-                    class="w-full py-3 mt-2 text-lg font-bold rounded-xl bg-pink-400 text-white shadow-md hover:bg-pink-500 transition active:scale-95">
-                    注册
+                    :disabled="isRegistering"
+                    :class="[
+                        'w-full py-3 mt-2 text-lg font-bold rounded-xl text-white shadow-md transition active:scale-95',
+                        isRegistering 
+                            ? 'bg-gray-400 cursor-not-allowed' 
+                            : 'bg-pink-400 hover:bg-pink-500'
+                    ]">
+                    {{ isRegistering ? '注册中...' : '注册' }}
                 </button>
             </form>
             <!-- Login Link -->
