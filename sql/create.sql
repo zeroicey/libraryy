@@ -35,6 +35,15 @@ create table if not exists `books` (
        unique key `title_unique` (`title`)
 ) engine=InnoDB default charset=utf8mb4 collate=utf8mb4_unicode_ci;
 
+create table if not exists `electic_books` (
+       `id` int not null auto_increment,
+       `book_id` int not null,
+       `url` varchar(255) not null,
+       `created_at` datetime default current_timestamp,
+       `updated_at` datetime default current_timestamp on update current_timestamp,
+
+       primary key (`id`),
+)
 
 create table if not exists `borrow_records` (
     `id` int not null auto_increment,
