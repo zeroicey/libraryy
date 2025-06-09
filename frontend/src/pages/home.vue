@@ -5,9 +5,7 @@
       <!-- 欢迎区域 -->
       <section class="text-center mb-16">
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-100 mb-6">
-          <svg class="w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 1 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
-          </svg>
+          <image src="/logo.png" mode="scaleToFill" />
         </div>
         <h1 class="text-5xl font-bold text-gray-900 mb-4">Libraryy 阅读图书馆</h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -22,8 +20,10 @@
           <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
             <div class="flex items-center mb-4">
               <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
               <h3 class="text-xl font-semibold text-gray-900">前端技术</h3>
@@ -38,20 +38,22 @@
                 <span class="text-gray-700">TypeScript - 类型安全</span>
               </div>
               <div class="flex items-center">
-                 <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                 <span class="text-gray-700">Tailwind CSS - 响应式设计</span>
-               </div>
-               <div class="flex items-center">
-                 <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                 <span class="text-gray-700">Pinia - 状态管理</span>
-               </div>
+                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                <span class="text-gray-700">Tailwind CSS - 响应式设计</span>
+              </div>
+              <div class="flex items-center">
+                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                <span class="text-gray-700">Pinia - 状态管理</span>
+              </div>
             </div>
           </div>
           <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
             <div class="flex items-center mb-4">
               <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
                 </svg>
               </div>
               <h3 class="text-xl font-semibold text-gray-900">后端技术</h3>
@@ -85,7 +87,8 @@
           <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4 mx-auto">
               <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
               </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 text-center mb-2">在线电子书预览</h3>
@@ -93,8 +96,10 @@
           </div>
           <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
               </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 text-center mb-2">书籍借阅归还</h3>
@@ -102,8 +107,10 @@
           </div>
           <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 text-center mb-2">管理员录入书籍</h3>
@@ -111,8 +118,10 @@
           </div>
           <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
             <div class="w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 text-center mb-2">用户借阅管理</h3>
@@ -127,10 +136,12 @@
           <h2 class="text-3xl font-bold mb-4">开始您的阅读之旅</h2>
           <p class="text-xl mb-8 opacity-90">立即注册，探索丰富的数字图书资源</p>
           <div class="flex justify-center space-x-4">
-            <router-link v-if="!isLogin" to="/register" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+            <router-link v-if="!isLogin" to="/register"
+              class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
               立即注册
             </router-link>
-            <router-link v-if="!isLogin" to="/login" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition">
+            <router-link v-if="!isLogin" to="/login"
+              class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition">
               用户登录
             </router-link>
             <div v-else class="text-xl">
@@ -148,7 +159,8 @@
           <div class="flex items-center justify-center space-x-3 mb-4">
             <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v10.5M4 19.5h16" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v10.5M4 19.5h16" />
               </svg>
             </div>
             <span class="text-xl font-bold">Libraryy 阅读图书馆</span>
