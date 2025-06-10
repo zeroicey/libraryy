@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-@WebServlet("/api/login")
+@WebServlet("/api/auth/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         StringBuilder jsonBuilder = new StringBuilder();
@@ -56,12 +56,14 @@ public class LoginServlet extends HttpServlet {
         // 创建登录响应数据，包含用户信息和token
         JSONObject loginData = new JSONObject();
         loginData.put("token", token);
-        loginData.put("user", new JSONObject() {{
-            put("id", user.getId());
-            put("username", user.getUsername());
-            put("email", user.getEmail());
-            // 不返回密码信息
-        }});
+        loginData.put("user", new JSONObject() {
+            {
+                put("id", user.getId());
+                put("username", user.getUsername());
+                put("email", user.getEmail());
+                // 不返回密码信息
+            }
+        });
 
         Responder.success("Login successful").setData(loginData).build(response);
     }

@@ -1,4 +1,6 @@
+import MobileMenu from "@/components/mobile-menu";
 import { Navbar } from "@/components/navbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function ModuleLayout({
   children,
@@ -6,9 +8,12 @@ export default function ModuleLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col w-screen h-screen">
-      <Navbar />
-      <div className="flex-1 overflow-hidden p-3">{children}</div>
-    </div>
+    <SidebarProvider defaultOpen={false}>
+      <MobileMenu />
+      <main className="w-full min-h-screen">
+        <Navbar />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }
