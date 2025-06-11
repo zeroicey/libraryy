@@ -11,4 +11,13 @@
         <filter-name>CORSFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>MockSuccessFilter</filter-name>
+        <filter-class>com.acacia.libraryy.filters.MockSuccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MockSuccessFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
