@@ -3,8 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useUserStore } from "@/store/user";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const { token } = useUserStore();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
 
@@ -187,16 +191,22 @@ export default function HomePage() {
 
                 {/* 行动按钮 */}
                 <div className="space-y-4">
-                  <Link
-                    href="/login"
+                  <div
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 px-8 rounded-2xl font-semibold text-lg hover:from-blue-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-300 shadow-2xl flex items-center justify-center group"
+                    onClick={() => {
+                      if (token) {
+                        router.push("/books");
+                      } else {
+                        router.push("/login");
+                      }
+                    }}
                   >
                     <span className="mr-2">📚</span>
                     立即开始阅读之旅
                     <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
                       →
                     </span>
-                  </Link>
+                  </div>
 
                   <Link
                     href="/register"
