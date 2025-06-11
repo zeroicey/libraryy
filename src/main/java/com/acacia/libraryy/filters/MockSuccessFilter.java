@@ -17,6 +17,15 @@ public class MockSuccessFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
+        HttpServletRequest httpRequest = (HttpServletRequest) req;
+        String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+
+        // Allow /api/auth/login and /api/auth/register to pass through
+        if ("/api/auth/login".equals(path) || "/api/auth/register".equals(path)) {
+            chain.doFilter(req, res);
+            return;
+        }
+
         String method = request.getMethod();
 
         if ("GET".equalsIgnoreCase(method) || 
