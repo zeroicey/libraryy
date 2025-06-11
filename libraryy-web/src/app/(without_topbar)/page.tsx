@@ -236,7 +236,7 @@ export default function HomePage() {
         <footer className="py-8">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center">
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm select-none">
                 © 2025 悦读图书馆 · 期末课程设计作品
               </p>
             </div>

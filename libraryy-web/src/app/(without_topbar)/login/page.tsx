@@ -16,6 +16,8 @@ export default function LoginPage() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRememberMe, setIsRememberMe] = useState(false);
+
   const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +45,7 @@ export default function LoginPage() {
         });
 
         // 跳转到主页或用户中心
-        router.push("/reading");
+        router.push("/books");
       } else {
         toast.error("登录失败", {
           description: response.message || "请检查用户名和密码",
@@ -211,6 +213,12 @@ export default function LoginPage() {
                   name="remember-me"
                   type="checkbox"
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  checked={isRememberMe}
+                  onChange={(e) => {
+                    if (isRememberMe) toast.info("我不再记得你了！");
+                    else toast.success("我记住你啦！");
+                    setIsRememberMe(!isRememberMe);
+                  }}
                 />
                 <label
                   htmlFor="remember-me"
@@ -221,8 +229,10 @@ export default function LoginPage() {
               </div>
               <div className="text-sm">
                 <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
+                  onClick={() => {
+                    toast.success("我也忘记了！");
+                  }}
+                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200 cursor-pointer select-none"
                 >
                   忘记密码？
                 </a>
@@ -283,7 +293,7 @@ export default function LoginPage() {
               还没有账号？{" "}
               <Link
                 href="/register"
-                className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"
+                className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200 select-none"
               >
                 立即注册
               </Link>
@@ -293,7 +303,7 @@ export default function LoginPage() {
 
         {/* 底部信息 */}
         <div className="mt-8 text-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 select-none">
             © 2025 悦读图书馆. 让阅读成为一种享受
           </p>
         </div>
