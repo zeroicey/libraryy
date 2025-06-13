@@ -63,6 +63,25 @@ const ReturnPage = () => {
       return record as BorrowRecord;
     });
     setBorrows(initialBorrows);
+
+    // Send initial data to backend (example: POST request)
+    const sendInitialData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/returns/sync", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(initialBorrows),
+        });
+        if (!response.ok) {
+          console.error("Failed to sync initial borrow data:", response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("Error syncing initial borrow data:", error);
+      }
+    };
+    sendInitialData();
   }, []);
 
   const recordsToReturn = useMemo(() => {
@@ -79,16 +98,52 @@ const ReturnPage = () => {
       });
   }, [borrows, searchTerm, statusFilter]);
 
-  const handleReturnBook = (recordId: string) => {
+  const handleReturnBook = async (recordId: string) => {
     const today = new Date().toISOString().split("T")[0];
-    setBorrows((prevBorrows) =>
-      prevBorrows.map((record) =>
-        record.id === recordId
-          ? { ...record, status: "returned", return_date: today }
-          : record
-      )
-    );
-    toast.success(`书籍 "${confirmReturnRecord?.book_title}" 已成功归还。`);
+    const returnedBookRecord = borrows.find(record => record.id === recordId);
+
+    if (!returnedBookRecord) {
+      toast.error("未找到要归还的记录。");
+      setConfirmReturnRecord(null);
+      return;
+    }
+
+    const updatedRecord = { ...returnedBookRecord, status: "returned" as "returned", return_date: today };
+
+    // Send return request to backend
+    try {
+      const response = await fetch(`http://localhost:8000/returns/${recordId}`, {
+        method: "PUT", // Or POST, depending on your API design
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          status: "returned", 
+          return_date: today 
+        }),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to update return status on backend:", response.status, response.statusText);
+        toast.error(`归还书籍 "${returnedBookRecord.book_title}" 失败，请稍后重试。`);
+        // Optionally, revert local state if backend update fails
+        // setConfirmReturnRecord(null);
+        // return;
+      } else {
+         // Update local state only after successful backend update (or proceed optimistically)
+        setBorrows((prevBorrows) =>
+          prevBorrows.map((record) =>
+            record.id === recordId
+              ? updatedRecord
+              : record
+          )
+        );
+        toast.success(`书籍 "${returnedBookRecord.book_title}" 已成功归还。`);
+      }
+    } catch (error) {
+      console.error("Error returning book:", error);
+      toast.error(`归还书籍 "${returnedBookRecord.book_title}" 时发生错误。`);
+    }
     setConfirmReturnRecord(null);
   };
 

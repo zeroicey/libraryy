@@ -149,6 +149,19 @@ const BooksPage = () => {
       setBooks(booksData as Book[]);
       setIsLoading(false);
     }, 500);
+
+    // 向后端发起请求获取所有图书
+    fetch('http://localhost:8000/books')
+      .then(response => {
+        if (!response.ok) {
+          console.error('Failed to fetch books from backend');
+        }
+        // 不处理返回的数据，只是确保请求已发送
+        console.log('Successfully pinged backend for books.');
+      })
+      .catch(error => {
+        console.error('Error pinging backend for books:', error);
+      });
   }, []);
 
   const categories = [

@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { registerAuth } from "@/api/auth"; // 导入 registerAuth 函数
 import Link from "next/link";
 import Image from "next/image";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -72,7 +76,24 @@ export default function RegisterPage() {
     e.preventDefault();
     if (validateForm()) {
       // 这里添加注册逻辑
-      console.log("注册数据:", formData);
+      const { username, email, password } = formData;
+      registerAuth({ username, email, password })
+        .then((response) => {
+          // 处理注册成功逻辑
+          console.log("注册成功:", response);
+          // 例如，跳转到登录页面或显示成功消息
+          toast("注册成功！");
+          router.push("/books");
+        })
+        .catch((error) => {
+          // 处理注册失败逻辑
+          console.error("注册失败:", error);
+          // 例如，显示错误消息
+          setErrors((prev) => ({
+            ...prev,
+            submit: error.message || "注册失败，请稍后再试",
+          }));
+        });
     }
   };
 
@@ -337,6 +358,11 @@ export default function RegisterPage() {
                   )}
                 </button>
               </div>
+              {errors.submit && (
+                <p className="mt-1 text-sm text-red-600 text-center">
+                  {errors.submit}
+                </p>
+              )}
               {errors.confirmPassword && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.confirmPassword}
