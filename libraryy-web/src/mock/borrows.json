@@ -1,0 +1,135 @@
+[
+  {
+    "id": "borrow_1",
+    "book_id": "1",
+    "book_title": "深入理解计算机系统",
+    "user_id": "user_zhangsan",
+    "user_name": "张三",
+    "borrow_date": "2024-07-01",
+    "due_date": "2024-07-15",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_2",
+    "book_id": "2",
+    "book_title": "代码整洁之道",
+    "user_id": "user_lisi",
+    "user_name": "李四",
+    "borrow_date": "2024-06-20",
+    "due_date": "2024-07-04",
+    "return_date": "2024-07-03",
+    "status": "returned"
+  },
+  {
+    "id": "borrow_3",
+    "book_id": "3",
+    "book_title": "JavaScript高级程序设计",
+    "user_id": "user_zhangsan",
+    "user_name": "张三",
+    "borrow_date": "2024-07-05",
+    "due_date": "2024-07-19",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_4",
+    "book_id": "5",
+    "book_title": "算法导论",
+    "user_id": "user_wangwu",
+    "user_name": "王五",
+    "borrow_date": "2024-06-15",
+    "due_date": "2024-06-29",
+    "return_date": "2024-06-28",
+    "status": "returned"
+  },
+  {
+    "id": "borrow_5",
+    "book_id": "8",
+    "book_title": "三体全集",
+    "user_id": "user_zhaoliu",
+    "user_name": "赵六",
+    "borrow_date": "2024-07-10",
+    "due_date": "2024-07-24",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_6",
+    "book_id": "4",
+    "book_title": "图解HTTP",
+    "user_id": "user_lisi",
+    "user_name": "李四",
+    "borrow_date": "2024-07-12",
+    "due_date": "2024-07-26",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_7",
+    "book_id": "6",
+    "book_title": "Python编程：从入门到实践",
+    "user_id": "user_wangwu",
+    "user_name": "王五",
+    "borrow_date": "2024-07-02",
+    "due_date": "2024-07-16",
+    "return_date": "2024-07-15",
+    "status": "returned"
+  }
+,
+  {
+    "id": "borrow_8",
+    "book_id": "10",
+    "book_title": "设计模式：可复用面向对象软件的基础",
+    "user_id": "user_sunqi",
+    "user_name": "孙七",
+    "borrow_date": "2024-07-15",
+    "due_date": "2024-07-29",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_9",
+    "book_id": "12",
+    "book_title": "程序员修炼之道 (第2版)",
+    "user_id": "user_zhouba",
+    "user_name": "周八",
+    "borrow_date": "2024-07-18",
+    "due_date": "2024-08-01",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_10",
+    "book_id": "15",
+    "book_title": "重构：改善既有代码的设计 (第2版)",
+    "user_id": "user_wujiu",
+    "user_name": "吴九",
+    "borrow_date": "2024-06-25",
+    "due_date": "2024-07-09",
+    "return_date": "2024-07-08",
+    "status": "returned"
+  },
+  {
+    "id": "borrow_11",
+    "book_id": "18",
+    "book_title": "你不知道的JavaScript (上卷)",
+    "user_id": "user_zhangsan",
+    "user_name": "张三",
+    "borrow_date": "2024-07-20",
+    "due_date": "2024-08-03",
+    "return_date": null,
+    "status": "borrowed"
+  },
+  {
+    "id": "borrow_12",
+    "book_id": "20",
+    "book_title": "Kubernetes权威指南 (第4版)",
+    "user_id": "user_lisi",
+    "user_name": "李四",
+    "borrow_date": "2024-07-22",
+    "due_date": "2024-08-05",
+    "return_date": null,
+    "status": "borrowed"
+  }
+]

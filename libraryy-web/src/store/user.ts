@@ -7,6 +7,8 @@ interface UserState {
   email: string;
   avatar: string;
   token: string;
+  current_book: string;
+  setCurrentBook: (book: string) => void;
   setUser: (User: UserInfo) => void;
   setId: (id: number) => void;
   setToken: (token: string) => void;
@@ -22,12 +24,14 @@ export const useUserStore = create<UserState>()(
       email: "guide@lifetrack.cc",
       avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=guide",
       token: "",
+      current_book: "",
       setUser: (User: UserInfo) =>
         set(() => ({
           id: User.id,
           username: User.username,
           email: User.email,
         })),
+      setCurrentBook: (book: string) => set(() => ({ current_book: book })),
       setToken: (token: string) => set(() => ({ token })),
       setId: (id: number) => set(() => ({ id })),
       setUsername: (username: string) =>
